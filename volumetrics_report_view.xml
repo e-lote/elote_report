@@ -2,12 +2,13 @@
 <openerp>
     <data>
 
-        <record model="ir.ui.view" id="view_purchase_order_elote_graph">
-            <field name="name">elote.report.graph</field>
-            <field name="model">purchase.order.weblot.report</field>
+        <record model="ir.ui.view" id="view_volumetrics_elote_graph">
+            <field name="name">volumetrics.report.graph</field>
+            <field name="model">volumetrics.weblot.report</field>
             <field name="arch" type="xml">
-                <graph string="Purchase Orders E-Lote Statistics" type="pivot">
-                    <field name="name" type="row"/>
+                <graph string="Volumetrics E-Lote Statistics" type="pivot">
+                    <field name="po_name" type="row"/>
+                    <!-- field name="name" type="row"/ -->
                     <field name="ean13" type="row"/>
                     <field name="publishing_bs" type="column"/>
                     <field name="default_code" type="row"/>
@@ -26,12 +27,13 @@
         </record>
 
 
-        <record id="view_report_purchase_order_weblot_tree" model="ir.ui.view">
-            <field name="name">purchase.order.weblot.report.tree</field>
-            <field name="model">purchase.order.weblot.report</field>
+        <record id="view_report_volumetrics_weblot_tree" model="ir.ui.view">
+            <field name="name">volumetrics.weblot.report.tree</field>
+            <field name="model">volumetrics.weblot.report</field>
             <field name="arch" type="xml">
-                <tree string="Purchase Orders">
-                    <field name="name"/>
+                <tree string="Volumetrics">
+                    <field name="po_name"/>
+                    <!-- field name="name"/ -->
                     <field name="ean13"/>
                     <field name="publishing_bs"/>
                     <field name="default_code"/>
@@ -49,9 +51,9 @@
             </field>
         </record>
 
-    <record id="view_report_purchase_order_weblot_filter" model="ir.ui.view">
-            <field name="name">purchase.order.weblot.report.select</field>
-            <field name="model">purchase.order.weblot.report</field>
+    <record id="view_report_volumetrics_weblot_filter" model="ir.ui.view">
+            <field name="name">volumetrics.weblot.report.select</field>
+            <field name="model">volumetrics.weblot.report</field>
             <field name="arch" type="xml">
                 <search string="Search">
                     <!--filter icon="terp-gtk-go-back-rtl" string="Todo" domain="[('state','in',('draft','open'))]"
@@ -67,6 +69,7 @@
                     <filter icon="terp-personal" string="My Phone Calls" help="Phone Calls that are assigned to me" domain="[('user_id','=',uid)]" />
                     <field name="section_id" string="Sales Team" context="{'invisible_section': False}"/ -->
                     <group expand="1" string="Group By...">
+                        <filter string="PO" icon="terp-partner" context="{'group_by':'po_name'}" />
                         <filter string="Partner" icon="terp-partner" context="{'group_by':'partner_id'}" />
                         <filter string="Product" icon="terp-partner" context="{'group_by':'product_id'}" />
                         <filter string="ISBN" icon="terp-partner" context="{'group_by':'ean13'}" />
@@ -91,37 +94,23 @@
 
 <!-- Phone calls by user and section Action -->
 
-        <record id="action_report_purchase_order_weblot" model="ir.actions.act_window">
-            <field name="name">Purchase Orders Weblot</field>
-            <field name="res_model">purchase.order.weblot.report</field>
+        <record id="action_report_volumetrics_weblot" model="ir.actions.act_window">
+            <field name="name">Volumetrics Weblot</field>
+            <field name="res_model">volumetrics.weblot.report</field>
             <field name="view_type">form</field>
             <field name="view_mode">graph</field>
             <!--field name="context">{"search_default_Partner":1,"search_default_Product":1,'group_by_no_leaf':1,'group_by':[]}</field -->
-            <field name="context">{"search_default_Partner":1,"search_default_Product":1,'group_by':['partner_id','product_id']}</field>
-            <field name="search_view_id" ref="view_report_purchase_order_weblot_filter"/>
-            <field name="view_id" ref="view_purchase_order_elote_graph"/>
+            <field name="context">{"search_default_Product":1,'group_by':['po_name']}</field>
+            <field name="search_view_id" ref="view_report_volumetrics_weblot_filter"/>
+            <field name="view_id" ref="view_volumetrics_elote_graph"/>
             <!-- field name="view_id" ref="view_report_purchase_order_weblot_tree"/ -->
             <field name="help">From this report, you can analyse purchase orders to manufacturing centers. You can group or filter the information according to several criteria and drill down the information, by adding more groups in the report.</field>
         </record>
 
-        <!-- record model="ir.actions.act_window.view" id="action_report_purchase_order_weblot_tree">
-            <field name="sequence" eval="1"/>
-            <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_report_purchase_order_weblot_tree"/>
-            <field name="act_window_id" ref="action_report_purchase_order_weblot"/>
-        </record>
-
-        <record model="ir.actions.act_window.view" id="action_report_crm_phonecall_cicca_graph">
-            <field name="sequence" eval="2"/>
-            <field name="view_mode">graph</field>
-            <field name="view_id" ref="view_report_crm_phonecall_cicca_graph"/>
-            <field name="act_window_id" ref="action_report_crm_phonecall_cicca"/>
-        </record -->
-
-        <menuitem name="e-Lote"
+        <menuitem name="Volumetrics"
             groups="base.group_sale_salesman"
-            action="action_report_purchase_order_weblot"
-            id="menu_weblot_tree" parent="purchase.menu_procurement_management" sequence="35"/>
+            action="action_report_volumetrics_weblot"
+            id="menu_volumetrics_tree" parent="purchase.menu_procurement_management" sequence="35"/>
 
     </data>
 </openerp>

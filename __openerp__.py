@@ -31,7 +31,7 @@
     'depends': ['base','product','purchase'],
     'init_xml': [],
     'data': [
-	'purchase_order_report_view.xml',
+	'purchase_order_report_view.xml','volumetrics_report_view.xml'
     ],
     'demo_xml': [
     ],
