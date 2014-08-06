@@ -65,7 +65,7 @@ class purchase_order_report(osv.osv):
         'additional_cost': fields.float('Additional Cost', readonly=True, select=True),
     }
 
-    def init(self, cr):
+    def init(self, cr, uid=1):
 
         """ Purchase Orders by partner, date and product
         """
@@ -83,7 +83,7 @@ class purchase_order_report(osv.osv):
 			from purchase_order a inner join purchase_order_line b on a.id = b.order_id
 			inner join product_product pp on pp.id = b.product_id 
 			left join product_supplierinfo c on c.product_tmpl_id = pp.product_tmpl_id and c.name = a.partner_id 
-            )""")
+			where a.create_uid = %i)"""%(uid))
 
 purchase_order_report()
 
