@@ -9,6 +9,7 @@
                 <graph string="Purchase Orders E-Lote Statistics" type="pivot">
                     <field name="name" type="row"/>
                     <field name="ean13" type="row"/>
+                    <field name="paper_colour" type="row"/>
                     <field name="publishing_bs" type="column"/>
                     <field name="default_code" type="row"/>
                     <field name="date_order" type="row"/>
@@ -16,6 +17,7 @@
                     <field name="state" type="row"/>
                     <field name="price_unit" type="measure"/>
                     <field name="amount" type="measure"/>
+                    <field name="boxes" type="measure"/>
                     <field name="qty" type="measure"/>
                     <field name="carton_quantity" type="measure"/>
                     <field name="carton_volume" type="measure"/>
@@ -34,12 +36,14 @@
                     <field name="name"/>
                     <field name="ean13"/>
                     <field name="publishing_bs"/>
+                    <field name="paper_colour"/>
                     <field name="default_code"/>
                     <field name="date_order"/>
                     <field name="product_id"/>
                     <field name="state"/>
                     <field name="price_unit" avg="Price Unit"/>
                     <field name="amount" sum="Amount"/>
+                    <field name="boxes" />
                     <field name="qty" sum="Qty"/>
                     <field name="carton_quantity"/>
                     <field name="carton_volume" avg="Carton Vol"/>
@@ -69,6 +73,7 @@
                     <group expand="1" string="Group By...">
                         <filter string="Partner" icon="terp-partner" context="{'group_by':'partner_id'}" />
                         <filter string="Product" icon="terp-partner" context="{'group_by':'product_id'}" />
+                        <filter string="Paper Colour" icon="terp-partner" context="{'group_by':'paper_colour'}" />
                         <filter string="ISBN" icon="terp-partner" context="{'group_by':'ean13'}" />
                         <filter string="Publishing BS" icon="terp-partner" context="{'group_by':'publishing_bs'}" />
                         <filter string="UBS Code" icon="terp-partner" context="{'group_by':'default_code'}" />

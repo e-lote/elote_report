@@ -76,7 +76,7 @@
                         <filter string="Publishing BS" icon="terp-partner" context="{'group_by':'publishing_bs'}" />
                         <filter string="UBS Code" icon="terp-partner" context="{'group_by':'default_code'}" />
                         <filter string="State" icon="terp-partner" context="{'group_by':'state'}" />
-                        <filter string="Name" icon="terp-partner" context="{'group_by':'name'}" />
+                        <!-- filter string="Name" icon="terp-partner" context="{'group_by':'name'}" / -->
                     </group>
                     <!-- field name="date_order" string="Order Date"/ -->
                     <field name="qty" string="Quantity"/>
