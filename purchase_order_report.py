@@ -79,7 +79,7 @@ class purchase_order_report(osv.osv):
 			b.product_qty as qty,b.boxes as boxes, b.price_unit as price_unit,b.product_qty * b.price_unit as amount,
 			case when (c.carton_quantity is null or c.carton_quantity = 0) then 0 else ceil(b.product_qty / c.carton_quantity) end as carton_quantity,
 			case when (c.carton_quantity is null or c.carton_quantity = 0) then 0 else ceil(b.product_qty / c.carton_quantity) * c.carton_volume end as carton_volume,
-			case when (c.carton_quantity is null or c.carton_quantity = 0) then 0 else ceil(b.product_qty / c.carton_quantity) * c.porc_teu end as porc_teu,
+			b.boxes * c.carton_volume porc_teu,
 			b.product_qty  * ((c.service_fee/100*c.supplier_price)+c.royalties+c.developing_cost) as additional_cost 
 			from purchase_order a inner join purchase_order_line b on a.id = b.order_id
 			inner join product_product pp on pp.id = b.product_id 
