@@ -20,6 +20,7 @@
                     <field name="qty" type="measure"/>
                     <field name="carton_quantity" type="measure"/>
                     <field name="carton_volume" type="measure"/>
+                    <field name="weight" type="measure"/>
                     <field name="porc_teu" type="measure"/>
                     <field name="additional_cost" type="measure"/>
                 </graph>
@@ -45,6 +46,7 @@
                     <field name="qty" sum="Qty"/>
                     <field name="carton_quantity"/>
                     <field name="carton_volume" avg="Carton Vol"/>
+                    <field name="weight" type="measure"/>
                     <field name="porc_teu" avg="Porc TEU"/>
                     <field name="additional_cost" sum="Dev Cost"/>
               </tree>
