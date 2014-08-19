@@ -23,6 +23,8 @@
                     <field name="weight" type="measure"/>
                     <field name="porc_teu" type="measure"/>
                     <field name="additional_cost" type="measure"/>
+                    <field name="boxes" type="measure"/>
+                    <field name="total_amount" type="measure"/>
                 </graph>
             </field>
         </record>
@@ -50,6 +52,8 @@
                     <field name="weight" type="measure"/>
                     <field name="porc_teu" avg="Porc TEU"/>
                     <field name="additional_cost" sum="Dev Cost"/>
+                    <field name="boxes" sum="Boxes"/>
+                    <field name="total_amount" sum="Total Amount"/>
               </tree>
             </field>
         </record>

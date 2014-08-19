@@ -65,6 +65,8 @@ class volumetrics_report(osv.osv):
         'weight': fields.float('Weight', readonly=True, select=True),
         'porc_teu': fields.float('% TEU', readonly=True, select=True),
         'additional_cost': fields.float('Additional Cost', readonly=True, select=True),
+	'boxes': fields.float('Boxes',readonly=True,select=True),
+	'total_amount': fields.float('Total Amount',readonly=True,select=True)
     }
 
     def init(self, cr):
@@ -84,7 +86,9 @@ class volumetrics_report(osv.osv):
 			case when (c.carton_quantity is null or c.carton_quantity = 0) then 0 else ceil(b.product_qty / c.carton_quantity) * c.carton_volume end as carton_volume,
 			case when (c.carton_quantity is null or c.carton_quantity = 0) then 0 else b.boxes * c.carton_weight end as weight,
 			b.boxes * c.carton_volume as porc_teu,
-			b.product_qty  * ((c.service_fee/100*c.supplier_price)+c.royalties+c.developing_cost) as additional_cost 
+			b.product_qty  * ((c.service_fee/100*c.supplier_price)+c.royalties+c.developing_cost) as additional_cost,
+			b.boxes as boxes,
+			b.product_qty  * ((c.service_fee/100*c.supplier_price)+c.royalties+c.developing_cost) + b.product_qty * b.price_unit as total_amount 
 			from purchase_order a inner join purchase_order_line b on a.id = b.order_id
 			inner join product_product pp on pp.id = b.product_id 
 			left join product_supplierinfo c on c.product_tmpl_id = pp.product_tmpl_id and c.name = a.partner_id 
