@@ -82,7 +82,7 @@ class volumetrics_report(osv.osv):
 			rp.ref as partner_ref,
 			a.date_order as date_order,b.product_id as product_id,a.state,
 			b.product_qty as qty,b.price_unit as price_unit,b.product_qty * b.price_unit as amount,
-			case when (c.carton_quantity is null or c.carton_quantity = 0) then 0 else ceil(b.product_qty / c.carton_quantity) end as carton_quantity,
+			case when (c.carton_quantity is null or c.carton_quantity = 0) then 0 else c.carton_quantity end as carton_quantity,
 			case when (c.carton_quantity is null or c.carton_quantity = 0) then 0 else ceil(b.product_qty / c.carton_quantity) * c.carton_volume end as carton_volume,
 			case when (c.carton_quantity is null or c.carton_quantity = 0) then 0 else b.boxes * c.carton_weight end as weight,
 			b.boxes * c.carton_volume as porc_teu,
