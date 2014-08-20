@@ -8,8 +8,8 @@
             <field name="arch" type="xml">
                 <graph string="ForecastPro E-Lote Statistics" type="pivot">
                     <field name="ean13" type="row"/>
-                    <field name="year" type="column"/>
-                    <field name="month" type="column"/>
+                    <field name="date_order" interval="year" type="col"/>
+                    <field name="date_order" interval="month" type="col"/>
                     <field name="product_id" type="row"/>
                     <field name="sb_name" type="row"/>
                     <field name="boxes" type="measure"/>
@@ -39,8 +39,6 @@
                         <filter string="SB Name" icon="terp-partner" context="{'group_by':'sb_name'}" />
                         <filter string="ISBN" icon="terp-partner" context="{'group_by':'ean13'}" />
                         <filter string="Product" icon="terp-partner" context="{'group_by':'product_id'}" />
-                        <filter string="Year" icon="terp-partner" context="{'group_by':'year'}" />
-                        <filter string="Month" icon="terp-partner" context="{'group_by':'month'}" />
                     </group>
                     <field name="boxes" string="Boxes"/>
                 </search>
