@@ -81,7 +81,7 @@ class volumetrics_report(osv.osv):
 			a.name as po_name,
 			a.partner_id as partner_id ,
 			rp.ref as partner_ref,
-			a.date_order as date_order,b.product_id as product_id,a.state,rpc.name as sb_name,
+			a.date_order as date_order,b.product_id as product_id,a.state,rp_sb.name as sb_name,
 			b.product_qty as qty,b.price_unit as price_unit,b.product_qty * b.price_unit as amount,
 			case when (c.carton_quantity is null or c.carton_quantity = 0) then 0 else c.carton_quantity end as carton_quantity,
 			case when (c.carton_quantity is null or c.carton_quantity = 0) then 0 else ceil(b.product_qty / c.carton_quantity) * c.carton_volume end as carton_volume,
@@ -95,6 +95,7 @@ class volumetrics_report(osv.osv):
 			left join product_supplierinfo c on c.product_tmpl_id = pp.product_tmpl_id and c.name = a.partner_id 
 			left join res_partner rp on rp.id = a.partner_id
 			left join res_users ru on ru.id = a.create_uid left join res_partner rpc on rpc.id = ru.partner_id
+			left join res_partner rp_sb on rpc.parent_id = rp_sb.id
             )""")
 
 volumetrics_report()
