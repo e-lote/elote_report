@@ -57,6 +57,7 @@ class volumetrics_report(osv.osv):
         'date_order': fields.date('Order Date', readonly=True, select=True),
         'product_id': fields.many2one('product.product', 'Product' , readonly=True),
         'state': fields.selection(STATE_SELECTION, 'Status', readonly=True, help="The status of the purchase order or the quotation request. A request for quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception.", select=True),
+        'sb_name': fields.char('SB Name', readonly=True, select=True),
         'qty': fields.float('Qty', readonly=True, select=True),
         'price_unit': fields.float('Price Unit', readonly=True, select=True),
         'amount': fields.float('Amount', readonly=True, select=True),
@@ -80,7 +81,7 @@ class volumetrics_report(osv.osv):
 			a.name as po_name,
 			a.partner_id as partner_id ,
 			rp.ref as partner_ref,
-			a.date_order as date_order,b.product_id as product_id,a.state,
+			a.date_order as date_order,b.product_id as product_id,a.state,rpc.name as sb_name,
 			b.product_qty as qty,b.price_unit as price_unit,b.product_qty * b.price_unit as amount,
 			case when (c.carton_quantity is null or c.carton_quantity = 0) then 0 else c.carton_quantity end as carton_quantity,
 			case when (c.carton_quantity is null or c.carton_quantity = 0) then 0 else ceil(b.product_qty / c.carton_quantity) * c.carton_volume end as carton_volume,
@@ -93,6 +94,7 @@ class volumetrics_report(osv.osv):
 			inner join product_product pp on pp.id = b.product_id 
 			left join product_supplierinfo c on c.product_tmpl_id = pp.product_tmpl_id and c.name = a.partner_id 
 			left join res_partner rp on rp.id = a.partner_id
+			left join res_users ru on ru.id = a.create_uid left join res_partner rpc on rpc.id = ru.partner_id
             )""")
 
 volumetrics_report()
