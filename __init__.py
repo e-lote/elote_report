@@ -21,5 +21,6 @@
 
 import purchase_order_report
 import volumetrics_report
+import forecastpro_report
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 

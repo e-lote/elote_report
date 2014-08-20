@@ -22,7 +22,7 @@
 
 {
     'name': 'e-Lote Report',
-    'version': '0.2.6',
+    'version': '0.2.7',
     'category': 'Tools',
     'complexity': "easy",
     'description': "",
@@ -31,7 +31,9 @@
     'depends': ['base','product','purchase','product_weblot','weblot'],
     'init_xml': [],
     'data': [
-	'purchase_order_report_view.xml','volumetrics_report_view.xml'
+	'purchase_order_report_view.xml',
+	'volumetrics_report_view.xml',
+	'forecastpro_report_view.xml',
     ],
     'demo_xml': [
     ],
