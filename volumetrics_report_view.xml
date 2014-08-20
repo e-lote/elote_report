@@ -15,6 +15,7 @@
                     <field name="default_code" type="row"/>
                     <field name="date_order" type="row"/>
                     <field name="product_id" type="row"/>
+                    <field name="lote_id" type="row"/>
                     <field name="state" type="row"/>
                     <field name="price_unit" type="measure"/>
                     <field name="amount" type="measure"/>
@@ -77,6 +78,7 @@
                     <filter icon="terp-personal" string="My Phone Calls" help="Phone Calls that are assigned to me" domain="[('user_id','=',uid)]" />
                     <field name="section_id" string="Sales Team" context="{'invisible_section': False}"/ -->
                     <group expand="1" string="Group By...">
+                        <filter string="Lote" icon="terp-partner" context="{'group_by':'lote_id'}" />
                         <filter string="PO" icon="terp-partner" context="{'group_by':'po_name'}" />
                         <filter string="Partner" icon="terp-partner" context="{'group_by':'partner_id'}" />
                         <filter string="Supplier Ref" icon="terp-partner" context="{'group_by':'partner_ref'}" />
