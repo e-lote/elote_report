@@ -40,6 +40,7 @@ class forecastpro_report(osv.osv):
         'product_id': fields.many2one('product.product', 'Product' , readonly=True),
         'sb_name': fields.char('SB Name', readonly=True, select=True),
 	'boxes': fields.float('Boxes',readonly=True,select=True),
+	'price_unit': fields.float('Cost',readonly=True,select=True),
     }
 
     def init(self, cr):
@@ -55,7 +56,8 @@ class forecastpro_report(osv.osv):
 			date_part('month',a.date_order) as month,
 			b.product_id as product_id,
 			rp_sb.name as sb_name,
-			b.boxes as boxes 
+			b.boxes as boxes,
+			b.price_unit as price_unit  
 			from purchase_order a inner join purchase_order_line b on a.id = b.order_id
 			inner join product_product pp on pp.id = b.product_id 
 			left join product_supplierinfo c on c.product_tmpl_id = pp.product_tmpl_id and c.name = a.partner_id 
