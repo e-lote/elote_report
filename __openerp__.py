@@ -22,7 +22,7 @@
 
 {
     'name': 'e-Lote Report',
-    'version': '0.2.10',
+    'version': '0.2.11',
     'category': 'Tools',
     'complexity': "easy",
     'description': "",
