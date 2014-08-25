@@ -96,7 +96,8 @@ class volumetrics_report(osv.osv):
 			left join product_supplierinfo c on c.product_tmpl_id = pp.product_tmpl_id and c.name = a.partner_id 
 			left join res_partner rp on rp.id = a.partner_id
 			left join res_users ru on ru.id = a.create_uid left join res_partner rpc on rpc.id = ru.partner_id
-			left join res_partner rp_sb on rpc.parent_id = rp_sb.id where a.create_uid = %i)"""%(uid))
+			left join res_partner rp_sb on rpc.parent_id = rp_sb.id 
+			where a.create_uid = %i)"""%(uid))
 
 volumetrics_report()
 

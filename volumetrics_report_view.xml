@@ -2,7 +2,7 @@
 <openerp>
     <data>
 
-        <record model="ir.ui.view" id="view_volumetrics_elote_graph">
+        <!-- record model="ir.ui.view" id="view_volumetrics_elote_graph">
             <field name="name">volumetrics.report.graph</field>
             <field name="model">volumetrics.weblot.report</field>
             <field name="arch" type="xml">
@@ -29,54 +29,34 @@
                     <field name="total_amount" type="measure"/>
                 </graph>
             </field>
-        </record>
+        </record -->
 
 
         <record id="view_report_volumetrics_weblot_tree" model="ir.ui.view">
             <field name="name">volumetrics.weblot.report.tree</field>
-            <field name="model">volumetrics.weblot.report</field>
+            <field name="model">purchase.order.line</field>
             <field name="arch" type="xml">
                 <tree string="Volumetrics">
-                    <field name="po_name"/>
-                    <!-- field name="name"/ -->
-                    <field name="ean13"/>
-                    <field name="publishing_bs"/>
-                    <field name="default_code"/>
-                    <field name="date_order"/>
+                    <field name="order_id"/>
                     <field name="product_id"/>
-                    <field name="partner_ref"/>
-                    <field name="state"/>
                     <field name="price_unit" avg="Price Unit"/>
-                    <field name="amount" sum="Amount"/>
-                    <field name="qty" sum="Qty"/>
+                    <field name="product_qty" sum="Qty"/>
                     <field name="carton_quantity"/>
                     <field name="carton_volume" avg="Carton Vol"/>
                     <field name="weight" type="measure"/>
                     <field name="porc_teu" avg="Porc TEU"/>
                     <field name="additional_cost" sum="Dev Cost"/>
+                    <field name="price_subtotal" sum="SubTotal"/>
                     <field name="boxes" sum="Boxes"/>
-                    <field name="total_amount" sum="Total Amount"/>
               </tree>
             </field>
         </record>
 
-    <record id="view_report_volumetrics_weblot_filter" model="ir.ui.view">
+    <!-- record id="view_report_volumetrics_weblot_filter" model="ir.ui.view">
             <field name="name">volumetrics.weblot.report.select</field>
             <field name="model">volumetrics.weblot.report</field>
             <field name="arch" type="xml">
                 <search string="Search">
-                    <!--filter icon="terp-gtk-go-back-rtl" string="Todo" domain="[('state','in',('draft','open'))]"
-                        help="Phone calls which are in draft and open state"/>
-                    <filter icon="terp-camera_test" string="Held" domain="[('state','=','done')]"
-                        help="Phone calls which are in closed state"/>
-                    <filter icon="gtk-media-pause" string="Not Held" domain="[('state','=','pending')]"
-                        help="Phone calls which are in pending state"/>
-                    <separator/>
-                    <filter string="My Sales Team(s)" icon="terp-personal+" context="{'invisible_section': False}" domain="[('section_id.user_id','=',uid)]"
-                            help="Phone calls that are assigned to one of the sale teams I manage"/>
-                    <separator/>
-                    <filter icon="terp-personal" string="My Phone Calls" help="Phone Calls that are assigned to me" domain="[('user_id','=',uid)]" />
-                    <field name="section_id" string="Sales Team" context="{'invisible_section': False}"/ -->
                     <group expand="1" string="Group By...">
                         <filter string="Lote" icon="terp-partner" context="{'group_by':'lote_id'}" />
                         <filter string="PO" icon="terp-partner" context="{'group_by':'po_name'}" />
@@ -88,33 +68,26 @@
                         <filter string="UBS Code" icon="terp-partner" context="{'group_by':'default_code'}" />
                         <filter string="SB Name" icon="terp-partner" context="{'group_by':'sb_name'}" />
                         <filter string="State" icon="terp-partner" context="{'group_by':'state'}" />
-                        <!-- filter string="Name" icon="terp-partner" context="{'group_by':'name'}" / -->
                     </group>
-                    <!-- field name="date_order" string="Order Date"/ -->
                     <field name="qty" string="Quantity"/>
                     <field name="price_unit" string="Price Unit"/>
-                    <!-- group expand="0" string="Extended Filters...">
-                        <field name="partner_id" filter_domain="[('partner_id','child_of',self)]"/>
-                        <field name="company_id" groups="base.group_multi_company"/>
-                        <field name="creation_date"/>
-                        <field name="opening_date"/>
-                        <field name="date_closed"/>
-                    </group -->
                 </search>
             </field>
-        </record>
+        </record -->
 
 <!-- Phone calls by user and section Action -->
 
         <record id="action_report_volumetrics_weblot" model="ir.actions.act_window">
             <field name="name">Volumetrics Weblot</field>
-            <field name="res_model">volumetrics.weblot.report</field>
+            <!-- field name="res_model">volumetrics.weblot.report</field -->
+            <field name="res_model">purchase.order.line</field>
             <field name="view_type">form</field>
-            <field name="view_mode">graph</field>
-            <!--field name="context">{"search_default_Partner":1,"search_default_Product":1,'group_by_no_leaf':1,'group_by':[]}</field -->
-            <field name="context">{"search_default_Product":1,'group_by':['po_name']}</field>
-            <field name="search_view_id" ref="view_report_volumetrics_weblot_filter"/>
-            <field name="view_id" ref="view_volumetrics_elote_graph"/>
+            <field name="view_mode">tree</field>
+            <!-- field name="view_mode">graph</field -->
+            <!-- field name="context">{"search_default_Order":1,'group_by':['order_id']}</field -->
+            <!-- field name="search_view_id" ref="view_report_volumetrics_weblot_filter"/>
+            <field name="view_id" ref="view_volumetrics_elote_graph"/ -->
+            <field name="view_id" ref="view_report_volumetrics_weblot_tree"/>
             <!-- field name="view_id" ref="view_report_purchase_order_weblot_tree"/ -->
             <field name="help">From this report, you can analyse purchase orders to manufacturing centers. You can group or filter the information according to several criteria and drill down the information, by adding more groups in the report.</field>
         </record>
