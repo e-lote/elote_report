@@ -91,7 +91,7 @@
         </record>
 
         <menuitem name="Volumetrics"
-            groups="base.group_sale_salesman"
+            groups="purchase.group_purchase_user"
             action="action_report_volumetrics_weblot"
             id="menu_volumetrics_tree" parent="purchase.menu_procurement_management" sequence="35"/>
 
