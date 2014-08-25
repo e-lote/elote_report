@@ -80,7 +80,7 @@
             <field name="name">Volumetrics Weblot</field>
             <!-- field name="res_model">volumetrics.weblot.report</field -->
             <field name="res_model">purchase.order.line</field>
-            <field name="view_type">form</field>
+            <field name="view_type">tree</field>
             <field name="view_mode">tree</field>
             <!-- field name="view_mode">graph</field -->
             <!-- field name="context">{"search_default_Order":1,'group_by':['order_id']}</field -->
