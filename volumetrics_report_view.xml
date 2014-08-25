@@ -37,17 +37,18 @@
             <field name="model">purchase.order.line</field>
             <field name="arch" type="xml">
                 <tree string="Volumetrics">
+                    <field name="order_id"/>
                     <field name="name"/>
                     <field name="product_id"/>
                     <field name="price_unit" avg="Price Unit"/>
                     <field name="product_qty" sum="Qty"/>
-                    <!-- field name="carton_quantity"/>
+                    <field name="carton_quantity"/>
                     <field name="carton_volume" avg="Carton Vol"/>
                     <field name="weight" type="measure"/>
                     <field name="porc_teu" avg="Porc TEU"/>
                     <field name="additional_cost" sum="Dev Cost"/>
                     <field name="price_subtotal" sum="SubTotal"/>
-                    <field name="boxes" sum="Boxes"/ -->
+                    <field name="boxes" sum="Boxes" />
               </tree>
             </field>
         </record>
