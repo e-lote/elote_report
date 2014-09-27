@@ -46,6 +46,7 @@ class volumetrics_report(osv.osv):
 
     
     _columns = {
+        'sb_origin': fields.many2one('res.partner', 'Supplier' , readonly=True),
         'ean13': fields.char('ISBN', readonly=True),
         'publishing_bs': fields.many2one('product.publishing_bs', 'Publishing BS' , readonly=True),
         'paper_colour': fields.many2one('product.paper_colour', 'Paper Colour' , readonly=True),
@@ -78,7 +79,7 @@ class volumetrics_report(osv.osv):
         tools.drop_view_if_exists(cr, 'volumetrics_weblot_report')
         cr.execute("""
             create or replace view volumetrics_weblot_report as (
-		select b.id,pp.ean13 as ean13,pp.publishing_bs as publishing_bs,pp.paper_colour,pp.default_code as default_code,
+		select b.id,a.sb_origin,pp.ean13 as ean13,pp.publishing_bs as publishing_bs,pp.paper_colour,pp.default_code as default_code,
 			a.name as po_name,
 			a.partner_id as partner_id ,
 			rp.ref as partner_ref,
