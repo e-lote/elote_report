@@ -28,12 +28,14 @@
     'description': "",
     'author': 'Gustavo Orrillo',
     'website': 'http://business.moldeo.coop',
-    'depends': ['base','product','purchase','product_weblot','weblot'],
+    'depends': ['base','product','purchase','product_weblot','weblot','report_latex'],
     'init_xml': [],
     'data': [
 	'purchase_order_report_view.xml',
 	'volumetrics_report_view.xml',
 	'forecastpro_report_view.xml',
+        'report/purchase_order.xml',
+        'report/purchase_resume.xml',
     ],
     'demo_xml': [
     ],

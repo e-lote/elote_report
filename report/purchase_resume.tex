@@ -1,0 +1,68 @@
+\documentclass{report}
+${helper.set_language()}
+\usepackage{xltxtra}
+\usepackage{longtable}
+
+\usepackage{fontspec}
+\setmainfont{FreeSans}
+
+\title{Resumenes de Ordenes}
+\author{${user.name|tex}}
+\logo{${helper.putImage(company.logo, scale=0.3)}}
+\name{${company.name|tex}}
+
+\begin{document}
+
+\newcommand*{\thead}[1]{\multicolumn{1}{|c|}{\bfseries #1}}
+
+
+\begin{longtable}{|p{0.10\textwidth}|p{0.30\textwidth}|p{0.10\textwidth}|p{0.10\textwidth}|p{0.10\textwidth}|p{0.10\textwidth}|p{0.10\textwidth}|}
+	\hline
+	\thead{ISBN} & \thead{Descripción} & \thead{Cantidad Unidades} & \thead{Cantidad Cajas} & \thead{Peso Bruto} & \thead{Volumen (m3)} & \thead{Subtotal} \\ 
+	\hline
+\endfirsthead
+	\hline
+	\thead{ISBN} & \thead{Descripción} & \thead{Cantidad Unidades} & \thead{Cantidad Cajas} & \thead{Peso Bruto} & \thead{Volumen (m3)} & \thead{Subtotal} \\ 
+	\hline
+\endhead
+	\hline
+\endfoot
+	\hline
+\endlastfoot
+<%
+	q_por_sb = 0
+	unidades = 0
+	cajas = 0
+	precio = 0
+%>
+% for po in objects:  
+	\hline
+	\multicolumn{7}{|c|}{${po.name | tex} - ${po.sb_origin.name | tex}} \\
+	\hline
+% for line in po.order_line: 
+<%
+	q_por_sb += 0
+	unidades += line.product_qty
+	cajas    += line.boxes
+	precio   += line.price_subtotal
+%>
+	${ line.product_id.ean13 | tex} & ${line.product_id.default_code | tex} & \
+	\hfill ${ line.product_qty | tex} & \hfill ${ line.boxes | tex} & \hfill ${ line.weight | tex} & \hfill ${ line.carton_volume | tex} & \hfill ${line.price_subtotal | tex} \\ 
+% endfor
+% endfor
+\end{longtable}
+
+\vspace{1cm}
+
+\section*{Totales}
+\begin{tabular}{rl}
+	\textbf{Q por SB} & ${q_por_sb | tex} \\
+	\textbf{Unidades} & ${unidades | tex} \\
+	\textbf{Cajas}    & ${cajas | tex} \\
+	\textbf{Precio}   & ${precio | tex} \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\end{document}
+

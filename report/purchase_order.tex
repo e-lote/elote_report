@@ -1,0 +1,57 @@
+\documentclass{report}
+${helper.set_language()}
+\usepackage{xltxtra}
+\usepackage{longtable}
+
+\usepackage{fontspec}
+\setmainfont{FreeSans}
+
+\title{Reportes de Ordenes para SB}
+\author{${user.name|tex}}
+\logo{${helper.putImage(company.logo, scale=0.3)}}
+\name{${company.name|tex}}
+
+\begin{document}
+
+\newcommand*{\thead}[1]{\multicolumn{1}{|c|}{\bfseries #1}}
+
+% for po in objects:  
+
+\vspace{1cm}
+
+\begin{tabular}{rl}
+	\textbf{PO}              & ${po.name | tex} \\
+	\textbf{Proveedor}       & ${po.partner_id.name | tex} \\
+	\textbf{Peso Bruto (Kg)} & ${po.total_weight | tex} \\
+	\textbf{Volumen (m3)}    & ${po.total_volume | tex} \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\begin{longtable}{|p{0.05\textwidth}|p{0.10\textwidth}|p{0.30\textwidth}|p{0.15\textwidth}|p{0.15\textwidth}|p{0.10\textwidth}|}
+	\hline
+	 \thead{Item} &  \thead{ISBN} &  \thead{Descripcion} &  \thead{Cantidad Unidades} &  \thead{Precio Catalogo Unitario} &  \thead{Subtotal} \\ 
+	\hline
+\endfirsthead
+	\hline
+	 \thead{Item} &  \thead{ISBN} &  \thead{Descripcion} &  \thead{Cantidad Unidades} &  \thead{Precio Catalogo Unitario} &  \thead{Subtotal} \\ 
+	\hline
+\endhead
+	\hline
+\endfoot
+	\hline
+	&               &                      &                            & \hfill \textbf{Total} & \hfill ${ po.amount_total | tex } \\ 
+	\hline
+\endlastfoot
+<% s = 0 %>
+% for line in po.order_line:  
+<% s = s + 1 %>
+	\hfill ${s | tex} & \hfill ${line.product_id.ean13 | tex} & ${line.product_id.default_code | tex} & \hfill ${line.product_qty | tex} & \hfill ${line.price_unit | tex} & \hfill ${line.price_subtotal | tex} \\ 
+% endfor
+\end{longtable}
+
+\newpage
+
+% endfor
+\end{document}
+

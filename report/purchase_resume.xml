@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data noupdate="1">
+	    <report
+		    string="Purchase Resume"
+		    id="latex_purchase_cp_print"
+		    model="purchase.order"
+		    name="latex.resume_purchase_cp.print"
+		    file="elote_report/report/purchase_resume.tex"
+		    report_type="latex"
+		    />
+    </data>
+</openerp>
