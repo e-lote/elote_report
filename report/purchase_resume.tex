@@ -16,13 +16,13 @@ ${helper.set_language()}
 \newcommand*{\thead}[1]{\multicolumn{1}{|c|}{\bfseries #1}}
 
 
-\begin{longtable}{|p{0.10\textwidth}|p{0.30\textwidth}|p{0.10\textwidth}|p{0.10\textwidth}|p{0.10\textwidth}|p{0.10\textwidth}|p{0.10\textwidth}|}
+\begin{longtable}{|p{0.07\textwidth}|p{0.10\textwidth}|p{0.10\textwidth}|p{0.30\textwidth}|p{0.06\textwidth}|p{0.06\textwidth}|p{0.06\textwidth}|p{0.06\textwidth}|p{0.06\textwidth}|}
 	\hline
-	\thead{ISBN} & \thead{Descripción} & \thead{Cantidad Unidades} & \thead{Cantidad Cajas} & \thead{Peso Bruto} & \thead{Volumen (m3)} & \thead{Subtotal} \\ 
+	\thead{PO} & \thead{SB} & \thead{ISBN} & \thead{Descripción} & \thead{Unidades} & \thead{Cajas} & \thead{Peso} & \thead{Vol (m3)} & \thead{Subtotal} \\ 
 	\hline
 \endfirsthead
 	\hline
-	\thead{ISBN} & \thead{Descripción} & \thead{Cantidad Unidades} & \thead{Cantidad Cajas} & \thead{Peso Bruto} & \thead{Volumen (m3)} & \thead{Subtotal} \\ 
+	\thead{PO} & \thead{SB} & \thead{ISBN} & \thead{Descripción} & \thead{Unidades} & \thead{Cajas} & \thead{Peso} & \thead{Vol (m3)} & \thead{Subtotal} \\ 
 	\hline
 \endhead
 	\hline
@@ -36,9 +36,9 @@ ${helper.set_language()}
 	precio = 0
 %>
 % for po in objects:  
-	\hline
-	\multicolumn{7}{|c|}{${po.name | tex} - ${po.sb_origin.name | tex}} \\
-	\hline
+%%	\hline
+%%	\multicolumn{7}{|c|}{${po.name | tex} - ${po.sb_origin.name | tex}} \\
+%%	\hline
 % for line in po.order_line: 
 <%
 	q_por_sb += 0
@@ -46,7 +46,8 @@ ${helper.set_language()}
 	cajas    += line.boxes
 	precio   += line.price_subtotal
 %>
-	${ line.product_id.ean13 | tex} & ${line.product_id.default_code | tex} & \
+	${ po.name | tex} & ${po.sb_origin.name | tex} & \
+	${ line.product_id.ean13 | tex} & ${line.product_id.name | tex} & \
 	\hfill ${ line.product_qty | tex} & \hfill ${ line.boxes | tex} & \hfill ${ line.weight | tex} & \hfill ${ line.carton_volume | tex} & \hfill ${line.price_subtotal | tex} \\ 
 % endfor
 % endfor

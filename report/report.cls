@@ -2,7 +2,7 @@
 \ProvidesClass{report}[2001/05/28 Document Report]
 
 \LoadClass[a4paper,8pt]{article}
-\RequirePackage[top=2cm,bottom=2cm,left=2cm,right=2cm,landscape]{geometry}
+\RequirePackage[top=2cm,bottom=2cm,left=1cm,right=1cm,landscape]{geometry}
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
 
