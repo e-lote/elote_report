@@ -28,25 +28,25 @@ ${helper.set_language()}
 
 \vspace{0.5cm}
 
-\begin{longtable}{|p{0.05\textwidth}|p{0.10\textwidth}|p{0.30\textwidth}|p{0.15\textwidth}|p{0.15\textwidth}|p{0.10\textwidth}|}
+\begin{longtable}{|p{0.05\textwidth}|p{0.10\textwidth}|p{0.30\textwidth}|p{0.10\textwidth}|p{0.10\textwidth}|p{0.10\textwidth}|p{0.10\textwidth}|}
 	\hline
-	 \thead{Item} &  \thead{ISBN} &  \thead{Descripcion} &  \thead{Cantidad Unidades} &  \thead{Precio Catalogo Unitario} &  \thead{Subtotal} \\ 
+	\thead{Item}  & \thead{ISBN} & \thead{Descripcion} & \thead{Total de Unidades} & \thead{Total de Cajas} & \thead{Precio Unitario} & \thead{Subtotal} \\ 
 	\hline
 \endfirsthead
 	\hline
-	 \thead{Item} &  \thead{ISBN} &  \thead{Descripcion} &  \thead{Cantidad Unidades} &  \thead{Precio Catalogo Unitario} &  \thead{Subtotal} \\ 
+	 \thead{Item} & \thead{ISBN} & \thead{Descripcion} & \thead{Total de Unidades} & \thead{Total de Cajas} & \thead{Precio Unitario} & \thead{Subtotal} \\ 
 	\hline
 \endhead
 	\hline
 \endfoot
 	\hline
-	&               &                      &                            & \hfill \textbf{Total} & \hfill ${ po.amount_total | tex } \\ 
+	&               &                      &             &               & \hfill \textbf{Total} & \hfill ${ po.amount_total | tex } \\ 
 	\hline
 \endlastfoot
 <% s = 0 %>
 % for line in po.order_line:  
 <% s = s + 1 %>
-	\hfill ${s | tex} & \hfill ${line.product_id.ean13 | tex} & ${line.product_id.default_code | tex} & \hfill ${line.product_qty | tex} & \hfill ${line.price_unit | tex} & \hfill ${line.price_subtotal | tex} \\ 
+	\hfill ${s | tex} & \hfill ${line.product_id.ean13 | tex} & ${line.product_id.name | tex} & \hfill ${line.product_qty | tex} & \hfill ${line.boxes | tex} & \hfill ${line.unit_cost | tex} & \hfill ${line.price_subtotal | tex} \\ 
 % endfor
 \end{longtable}
 
